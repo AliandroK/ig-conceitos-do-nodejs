@@ -103,7 +103,7 @@ app.put('/todos/:id', checksExistsUserAccount, checksExistsUserTodo, (request, r
   todo.title = title;
   todo.deadline = new Date(deadline);
 
-  return response.status(200).send();
+  return response.status(200).json(todo);
 });
 
 app.patch('/todos/:id/done', checksExistsUserAccount, checksExistsUserTodo, (request, response) => {
@@ -115,11 +115,12 @@ app.patch('/todos/:id/done', checksExistsUserAccount, checksExistsUserTodo, (req
 
   todo.done = true;
 
-  return response.status(200).send();
+  return response.status(200).json(todo);
 });
 
 app.delete('/todos/:id', checksExistsUserAccount, checksExistsUserTodo, (request, response) => {
   // Complete aqui
+
   const {user} = request;
   
   const {todo} = request;  //user.todos.find(element => element.id === id);
